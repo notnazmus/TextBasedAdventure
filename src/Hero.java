@@ -1,5 +1,3 @@
-package Heroes;
-
 public class Hero {
 
     private int speed;

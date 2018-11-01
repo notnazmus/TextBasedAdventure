@@ -1,6 +1,6 @@
 package Monsters;
 
-public class Monster implements Abilities{
+public class Monster {
 
     private String type;
     private int HP;

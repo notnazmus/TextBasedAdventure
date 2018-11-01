@@ -2,6 +2,6 @@ package Monsters;
 
 interface  Abilities {
 
-    void bodySlam();
+    //void bodySlam(int attackDmg);
 
 }
