@@ -15,6 +15,15 @@ public class Room {
         this.isCompleted = isCompleted;
     }
 
-    
+    public Room(Items reward, boolean isCompleted)
+    {
+
+    }
+
+
+    public String toString()
+    {
+      return "{ ? }" ;
+    }
 
 }

@@ -23,9 +23,10 @@ public class Board {
         {
             for (int n = 0; n <gameBoard[i].length;n++)
             {
-                System.out.print(gameBoard[i][n]);
+                System.out.print(" " + gameBoard[i][n] + " ");
             }
-            System.out.print("");
+            System.out.println(" ");
+            System.out.println(" ");
         }
     }
 
