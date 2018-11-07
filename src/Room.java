@@ -27,6 +27,13 @@ public class Room {
 
     }
 
+    public Room(String roomName, boolean isCompleted)
+    {
+        this.roomName = roomName;
+        this.isCompleted = isCompleted;
+
+    }
+
     public Room()
     {
 
