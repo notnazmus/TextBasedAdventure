@@ -1,3 +1,5 @@
+//Nazmus Sakib Pd 2&3
+
 import Characters.Hero;
 import Items.*;
 import Map.Board;
@@ -14,7 +16,7 @@ public class Runner {
     private static boolean gameBeat = false;
     private static boolean gameOver = false;
 
-    private static String[] roomList = {"Boss Map.Room","Treasure Map.Room","Cave Halls","Underground Lake","Empty Map.Room"};
+    private static String[] roomList = {"Boss Room","Treasure Room","Cave Halls","Underground Lake","Empty Room"};
 
     public static Hero hero = new Hero(400,4,0,15);
     private static  String userName = "";
@@ -52,11 +54,11 @@ public class Runner {
     }
 
     /**
-     * Function used to clear the terminal.
+     * Function used to print out empty lines of Strings in the terminal.
      */
     public static void clearScreen()
     {
-        for (int i =0; i < 20; i++)
+        for (int i =0; i < 3; i++)
         {
             System.out.println(" ");
         }
@@ -125,7 +127,7 @@ public class Runner {
                 } else {
                     int var = (int)(Math.random()*3+1);
                     // System.out.println(var);
-                    if (roomList[var].equals("Treasure Map.Room"))
+                    if (roomList[var].equals("Treasure Room"))
                     {
                         Room treasureRoom = new Room(roomList[1],randomItem(),false);
                         map.editBoard(i,n,treasureRoom);
@@ -250,10 +252,10 @@ public class Runner {
         Room currentRoom = gameBoard[hero.getiCord()][hero.getnCord()];
         if (currentRoom.isCompleted() == false)
         {
-            if (currentRoom.getRoomName().equalsIgnoreCase("Boss Map.Room"))
+            if (currentRoom.getRoomName().equalsIgnoreCase("Boss Room"))
             {
                 bossRoom(currentRoom);
-            } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Map.Room"))
+            } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Room"))
             {
                 treasureRoom(currentRoom);
             } else if(currentRoom.getRoomName().equalsIgnoreCase("Cave Halls"))
@@ -270,8 +272,8 @@ public class Runner {
     }
 
     /**
-     *
-     * @param currentRoom
+     *  Method used to "enter" any Room objects that have the roomName Boss Room.
+     * @param currentRoom parameter that refers to the specific room that is being "entered".
      */
     public static void bossRoom(Room currentRoom)
     {
@@ -280,7 +282,7 @@ public class Runner {
         clearScreen();
         System.out.println("A "+currentRoom.getM()+ " has appeared");
         String input;
-        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        while (hero.getHP() >0 && currentRoom.getM().getHP() >0)
         {
             System.out.println("Goblin HP: "+currentRoom.getM().getHP());
             System.out.println(userName + "'s HP: " + hero.getHP());
@@ -323,8 +325,8 @@ public class Runner {
     }
 
     /**
-     *
-     * @param currentRoom
+     * Method used to "enter" any Room objects that have the roomName Treasure Room.
+     * @param currentRoom parameter that refers to the specific room that is being "entered".
      */
     public static void treasureRoom(Room currentRoom)
     {
@@ -338,15 +340,15 @@ public class Runner {
     }
 
     /**
-     *
-     * @param currentRoom
+     * Method used to "enter" any Room objects that have the roomName Cave Halls.
+     * @param currentRoom parameter that refers to the specific room that is being "entered".
      */
     public static void caveHalls(Room currentRoom)
     {
         clearScreen();
         System.out.println("A "+currentRoom.getM()+ " has appeared");
         String input;
-        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        while (hero.getHP() >0 && currentRoom.getM().getHP() >0)
         {
             System.out.println("Goblin HP: "+currentRoom.getM().getHP());
             System.out.println(userName + "'s HP: " + hero.getHP());
@@ -362,6 +364,7 @@ public class Runner {
             }
         }
         if (currentRoom.getM().getHP()<=0) {
+            System.out.println();
             System.out.println("The Goblin was defeated!");
             System.out.println(userName + " has obtained "+ currentRoom.getReward());
             currentRoom.getReward().consume(hero);
@@ -377,8 +380,8 @@ public class Runner {
     }
 
     /**
-     *
-     * @param currentRoom
+     * Method used to "enter" any Room objects that have the roomName Underground Lake.
+     * @param currentRoom parameter that refers to the specific room that is being "entered".
      */
     public static void undergroundLake(Room currentRoom)
     {
@@ -387,7 +390,7 @@ public class Runner {
         clearScreen();
         System.out.println("A "+currentRoom.getM()+ " has appeared");
         String input;
-        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        while (hero.getHP() >0 && currentRoom.getM().getHP() >0)
         {
             System.out.println("Goblin HP: "+currentRoom.getM().getHP());
             System.out.println(userName + "'s HP: " + hero.getHP());
@@ -447,30 +450,28 @@ public class Runner {
      */
     public static Items randomItem()
     {
-        double rand = Math.random();
-        if (rand >= 0 && rand <= 0.49)
+        int rand = (int)(Math.random()*3+1);
+        if (rand ==1)
         {
-            if (rand >= 0 && rand <= 0.49)
-            {
-                Drumstick drumstick = new Drumstick();
-                return drumstick;
-            } else
-            {
-                DragonFlesh dragonFlesh = new DragonFlesh();
-                return dragonFlesh;
-            }
-        } else
+            BladeOfTheUndying bladeOfTheUndying = new BladeOfTheUndying();
+            return bladeOfTheUndying;
+        } else if (rand ==2) {
+            DragonFlesh dragonFlesh = new DragonFlesh();
+            return dragonFlesh;
+        } else if (rand == 3)
         {
-            if (rand >= 0 && rand <= 0.49)
-            {
-                SwordOfAzzaroth swordOfAzzaroth = new SwordOfAzzaroth();
-                return swordOfAzzaroth;
-            } else
-            {
-                BladeOfTheUndying bladeOfTheUndying = new BladeOfTheUndying();
-                return bladeOfTheUndying;
-            }
+            SwordOfAzzaroth swordOfAzzaroth = new SwordOfAzzaroth();
+            return swordOfAzzaroth;
+        } else {
+            Drumstick drumstick = new Drumstick();
+            return drumstick;
         }
+
+
+
+
+
+
     }
 
 
