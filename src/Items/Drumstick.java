@@ -15,7 +15,7 @@ public class Drumstick extends Food implements Effects {
      */
     public Drumstick()
     {
-        super("Drumstick","A delicious snack that boosts your HP by 10 and your ATK by 2.", 10,2);
+        super("Drumstick","A delicious snack that boosts your HP by 10 and your ATK by 2.", 10,6);
         this.outputStr = outputStr;
         this.bonusAtk = bonusAtk;
         this.bonusHP = bonusHP;

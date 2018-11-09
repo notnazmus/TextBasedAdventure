@@ -14,7 +14,7 @@ public class BladeOfTheUndying extends Weapons implements Effects {
      */
     public BladeOfTheUndying()
     {
-        super("Blade of the Undying","Legend has it those who weild this blade will never fall in battle.", 400,10);
+        super("Blade of the Undying","Legend has it those who weild this blade will never fall in battle.", 75,5);
         this.outputStr = outputStr;
         this.bonusAtk = bonusAtk;
         this.bonusHP = bonusHP;

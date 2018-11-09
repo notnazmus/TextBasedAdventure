@@ -1,6 +1,6 @@
 package Characters;
 
-import Items.Items;
+
 import Monsters.Monster;
 
 public class Hero {

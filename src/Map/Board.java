@@ -4,11 +4,6 @@ public class Board {
 
     private Room[][] gameBoard;
 
-
-
-
-
-
     public Board(Room[][] gameBoard)
     {
         this.gameBoard = gameBoard;

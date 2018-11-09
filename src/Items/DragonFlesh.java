@@ -14,7 +14,7 @@ public class DragonFlesh extends Food implements Effects {
      */
     public DragonFlesh()
     {
-        super("Dragon Flesh","A rare type of meat from the Age of Dragon Slayers.", 100,15);
+        super("Dragon Flesh","A rare type of meat from the Age of Dragon Slayers.", 50,9);
         this.outputStr = outputStr;
         this.bonusAtk = bonusAtk;
         this.bonusHP = bonusHP;

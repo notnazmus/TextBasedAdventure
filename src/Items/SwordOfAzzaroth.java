@@ -18,7 +18,7 @@ public class SwordOfAzzaroth extends Weapons implements Effects {
      */
     public SwordOfAzzaroth()
     {
-        super("Sword of Azzaroth","A blade forged by the Dwarves of the Sunforge.", 0,20);
+        super("Sword of Azzaroth","A blade forged by the Dwarves of the Sunforge.", 0,13);
         this.outputStr = outputStr;
         this.bonusAtk = bonusAtk;
         this.bonusHP = bonusHP;

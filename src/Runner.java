@@ -117,7 +117,7 @@ public class Runner {
             {
                 if (i == 2 && n ==2)
                 {
-                    Dragon dragon = new Dragon(100,20);
+                    Dragon dragon = new Dragon(350,35);
                     Room bossRoom = new Room(roomList[0],dragon,randomItem(),false);
                     map.editBoard(i,n,bossRoom);
                 } else if(i == 4 && n  ==0)
