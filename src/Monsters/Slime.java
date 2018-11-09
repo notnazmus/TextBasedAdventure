@@ -1,5 +1,7 @@
 package Monsters;
 
+import Characters.Hero;
+
 public class Slime extends Monster implements Abilities {
 
     private String type = "Slime";
@@ -12,5 +14,6 @@ public class Slime extends Monster implements Abilities {
         this.HP = HP;
         this.attackDmg = attackDmg;
     }
+
 
 }

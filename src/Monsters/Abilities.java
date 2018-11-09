@@ -1,7 +1,9 @@
 package Monsters;
 
+import Characters.Hero;
+
 interface  Abilities {
 
-    //void bodySlam(int attackDmg);
+    void attack(Hero h);
 
 }

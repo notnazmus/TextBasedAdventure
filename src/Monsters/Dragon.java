@@ -1,5 +1,7 @@
 package Monsters;
 
+import Characters.Hero;
+
 public class Dragon extends Monster implements Abilities {
 
     private String type = "Dragon";
@@ -12,4 +14,5 @@ public class Dragon extends Monster implements Abilities {
         this.HP = HP;
         this.attackDmg = attackDmg;
     }
+
 }

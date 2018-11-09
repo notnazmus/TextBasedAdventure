@@ -12,10 +12,11 @@ public class Runner {
     public static Board map = new Board(5,5);
     public static String[][] displayedMap = new String[5][5];
     public static boolean gameBeat = false;
+    public static boolean gameOver = false;
 
     public static String[] roomList = {"Boss Map.Room","Treasure Map.Room","Cave Halls","Underground Lake","Empty Map.Room"};
 
-    public static Hero hero = new Hero(400,4,0,10);
+    public static Hero hero = new Hero(400,4,0,15);
     private static  String userName = "";
 
     public static Drumstick drumstick = new Drumstick();
@@ -28,7 +29,7 @@ public class Runner {
         gameIntro();
         initGame();
         genBoard();
-        while (!gameBeat)
+        while (!gameBeat && !gameOver)
         {
             playerMovement();
             enterRoom();
@@ -56,7 +57,7 @@ public class Runner {
      */
     public static void clearScreen()
     {
-        for (int i =0; i < 50; i++)
+        for (int i =0; i < 20; i++)
         {
             System.out.println(" ");
         }
@@ -91,11 +92,12 @@ public class Runner {
     {
         System.out.println("What is your name adventurer?");
         userName = scan.nextLine();
-        pause(100);
+        hero.setName(userName);
+        pause(350);
         System.out.println("Welcome, "+ userName + ", to the Cave of Apophis");
         System.out.println("In order leave this cave you must slay the Dragon.");
         System.out.println("This is where your adventure begins, "+ userName+"!");
-        pause(100);
+        pause(2750);
         System.out.println("");
         System.out.println("Type UP DOWN LEFT or RIGHT to move.");
 
@@ -114,7 +116,7 @@ public class Runner {
             {
                 if (i == 2 && n ==2)
                 {
-                    Dragon dragon = new Dragon(100,100);
+                    Dragon dragon = new Dragon(100,20);
                     Room bossRoom = new Room(roomList[0],dragon,drumstick,false);
                     map.editBoard(i,n,bossRoom);
                 } else if(i == 4 && n  ==0)
@@ -131,13 +133,13 @@ public class Runner {
                     }
                     if (roomList[var].equals("Cave Halls"))
                     {
-                        Goblin goblin = new Goblin(100,100);
+                        Goblin goblin = new Goblin(45,8);
                         Room caveHalls = new Room(roomList[2], goblin, drumstick,false);
                         map.editBoard(i,n,caveHalls);
                     }
                     if (roomList[var].equals("Underground Lake"))
                     {
-                        Slime slime = new Slime(100,100);
+                        Slime slime = new Slime(20,10);
                         Room undergroundLake = new Room(roomList[3],slime,drumstick,false);
                         map.editBoard(i,n,undergroundLake);
                     }
@@ -156,7 +158,6 @@ public class Runner {
     {
         String dir = scan.nextLine();
         changeCoords(dir);
-        printMap();
     }
 
     /**
@@ -249,7 +250,7 @@ public class Runner {
         {
             if (currentRoom.getRoomName().equalsIgnoreCase("Boss Map.Room"))
             {
-                boosRoom(currentRoom);
+                bossRoom(currentRoom);
             } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Map.Room"))
             {
                 treasureRoom(currentRoom);
@@ -267,12 +268,50 @@ public class Runner {
     }
 
 
-    public static void boosRoom(Room currentRoom)
+    public static void bossRoom(Room currentRoom)
     {
         clearScreen();
         printMap();
-        currentRoom.setCompleted(true);
-        gameBeat = true;
+        clearScreen();
+        System.out.println("A "+currentRoom.getM()+ " has appeared");
+        String input;
+        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        {
+            System.out.println("Goblin HP: "+currentRoom.getM().getHP());
+            System.out.println(userName + "'s HP: " + hero.getHP());
+            System.out.println(userName+"'s ATK: "+hero.getAtk());
+            System.out.println("");
+            System.out.println("Moves:");
+            System.out.println("basicAtk       greaterAtk      impossibleAtk      forbiddenAtk");
+            input = scan.nextLine();
+            fightSim(hero,currentRoom.getM(),input);
+            if (hero.getHP() > 0 && currentRoom.getM().getHP() >0 )
+            {
+                currentRoom.getM().attack(hero);
+            }
+        }
+        if (currentRoom.getM().getHP()<=0) {
+            System.out.println("King Mordo: Congratulations, hero. You have slain Aphophis and brought peace unto this land!");
+            pause(750);
+            System.out.println("King Mordo: As a gift I shall bestow upon you powers beyond your imagination.");
+            pause(750);
+            System.out.println("SYSTEM: King Mordo has granted you +10000 health and +10000 attack damage");
+            pause(350);
+            hero.setHP(hero.getHP()+10000);
+            hero.setAtk(hero.getAtk()+10000);
+            System.out.println(userName + "'s HP: " + hero.getHP());
+            System.out.println(userName+"'s ATK: "+hero.getAtk());
+            System.out.println(" ");
+            System.out.println("Game Has Been Cleared by "+userName+"!");
+            pause(1200);
+            currentRoom.setCompleted(true);
+            gameBeat = true;
+        }
+        if (hero.getHP()<=0)
+        {
+            System.out.println("You were defeated and have failed!");
+            gameOver = true;
+        }
     }
 
     public static void treasureRoom(Room currentRoom)
@@ -280,23 +319,97 @@ public class Runner {
         clearScreen();
         printMap();
         System.out.println(userName + "'s HP: " + hero.getHP());
+        System.out.println(userName+"'s ATK: "+hero.getAtk());
         System.out.println(userName + " has obtained "+ currentRoom.getReward());
+        currentRoom.getReward().consume(hero);
         currentRoom.setCompleted(true);
     }
 
     public static void caveHalls(Room currentRoom)
     {
         clearScreen();
-        printMap();
-        currentRoom.setCompleted(true);
+        System.out.println("A "+currentRoom.getM()+ " has appeared");
+        String input;
+        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        {
+            System.out.println("Goblin HP: "+currentRoom.getM().getHP());
+            System.out.println(userName + "'s HP: " + hero.getHP());
+            System.out.println(userName+"'s ATK: "+hero.getAtk());
+            System.out.println("");
+            System.out.println("Moves:");
+            System.out.println("basicAtk       greaterAtk      impossibleAtk      forbiddenAtk");
+            input = scan.nextLine();
+            fightSim(hero,currentRoom.getM(),input);
+            if (hero.getHP() > 0 && currentRoom.getM().getHP() >0 )
+            {
+                currentRoom.getM().attack(hero);
+            }
+        }
+        if (currentRoom.getM().getHP()<=0) {
+            System.out.println("The Goblin was defeated!");
+            currentRoom.setCompleted(true);
+            printMap();
+        }
+        if (hero.getHP()<=0)
+        {
+            System.out.println("You were defeated and have failed!");
+            gameOver = true;
+        }
+
     }
     public static void undergroundLake(Room currentRoom)
     {
         clearScreen();
         printMap();
-        currentRoom.setCompleted(true);
+        clearScreen();
+        System.out.println("A "+currentRoom.getM()+ " has appeared");
+        String input;
+        while (hero.getHP() >=0 && currentRoom.getM().getHP() >=0)
+        {
+            System.out.println("Goblin HP: "+currentRoom.getM().getHP());
+            System.out.println(userName + "'s HP: " + hero.getHP());
+            System.out.println(userName+"'s ATK: "+hero.getAtk());
+            System.out.println("");
+            System.out.println("Moves:");
+            System.out.println("basicAtk       greaterAtk      impossibleAtk      forbiddenAtk");
+            input = scan.nextLine();
+            fightSim(hero,currentRoom.getM(),input);
+            if (hero.getHP() > 0 && currentRoom.getM().getHP() >0 )
+            {
+                currentRoom.getM().attack(hero);
+            }
+        }
+        if (currentRoom.getM().getHP()<=0) {
+            System.out.println("The Slime was defeated!");
+            currentRoom.setCompleted(true);
+            printMap();
+        }
+        if (hero.getHP()<=0)
+        {
+            System.out.println("You were defeated and have failed!");
+            gameOver = true;
+        }
     }
 
+
+    public static void fightSim(Hero h, Monster m, String atkType)
+    {
+        if (atkType.equalsIgnoreCase("greaterAtk"))
+        {
+            hero.greaterAtk(m);
+        } else if (atkType.equalsIgnoreCase("basicAtk")) {
+            hero.basicAtk(m);
+        } else if (atkType.equalsIgnoreCase("impossibleAtk"))
+        {
+            hero.impossibleAtk(m);
+        } else if(atkType.equalsIgnoreCase("forbiddenAtk"))
+        {
+            hero.forbiddenAtk(m);
+        } else
+        {
+            System.out.println("Invalid input! Please enter a valid attack.");
+        }
+    }
 
 
 
