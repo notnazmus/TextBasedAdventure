@@ -9,18 +9,18 @@ import java.util.Scanner;
 
 public class Runner {
 
-    public static Board map = new Board(5,5);
-    public static String[][] displayedMap = new String[5][5];
-    public static boolean gameBeat = false;
-    public static boolean gameOver = false;
+    private static Board map = new Board(5,5);
+    private static String[][] displayedMap = new String[5][5];
+    private static boolean gameBeat = false;
+    private static boolean gameOver = false;
 
-    public static String[] roomList = {"Boss Map.Room","Treasure Map.Room","Cave Halls","Underground Lake","Empty Map.Room"};
+    private static String[] roomList = {"Boss Map.Room","Treasure Map.Room","Cave Halls","Underground Lake","Empty Map.Room"};
 
     public static Hero hero = new Hero(400,4,0,15);
     private static  String userName = "";
 
 
-    static Scanner scan = new Scanner(System.in);
+    private static Scanner scan = new Scanner(System.in);
 
     public static void main(String[] args)
     {
@@ -32,6 +32,7 @@ public class Runner {
             playerMovement();
             enterRoom();
         }
+        scan.close();
     }
 
     /**
@@ -240,6 +241,9 @@ public class Runner {
         }
     }
 
+    /**
+     * Function used to check if a room has already been entered/completed, and if it hasn't it runs a method to "enter" that room.
+     */
     public static void enterRoom()
     {
         Room[][] gameBoard = map.getGameBoard();
@@ -265,7 +269,10 @@ public class Runner {
         }
     }
 
-
+    /**
+     *
+     * @param currentRoom
+     */
     public static void bossRoom(Room currentRoom)
     {
         clearScreen();
@@ -315,6 +322,10 @@ public class Runner {
         }
     }
 
+    /**
+     *
+     * @param currentRoom
+     */
     public static void treasureRoom(Room currentRoom)
     {
         clearScreen();
@@ -326,6 +337,10 @@ public class Runner {
         currentRoom.setCompleted(true);
     }
 
+    /**
+     *
+     * @param currentRoom
+     */
     public static void caveHalls(Room currentRoom)
     {
         clearScreen();
@@ -360,6 +375,11 @@ public class Runner {
         }
 
     }
+
+    /**
+     *
+     * @param currentRoom
+     */
     public static void undergroundLake(Room currentRoom)
     {
         clearScreen();
@@ -396,7 +416,12 @@ public class Runner {
         }
     }
 
-
+    /**
+     * Function used to calculate and perform the heroes attacks.
+     * @param h refers to the hero that is going to attack.
+     * @param m refers to the monster that is the target of the attack.
+     * @param atkType  string input that determines what type of attack is going to be performed.
+     */
     public static void fightSim(Hero h, Monster m, String atkType)
     {
         if (atkType.equalsIgnoreCase("greaterAtk"))
@@ -416,6 +441,10 @@ public class Runner {
         }
     }
 
+    /**
+     * A function used to randomly return a random object from the Items parent class.
+     * @return returns a random object from the Items parent class.
+     */
     public static Items randomItem()
     {
         double rand = Math.random();
