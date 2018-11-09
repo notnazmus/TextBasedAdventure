@@ -58,11 +58,11 @@ public class Room {
 
     public String toString()
     {
-      if (this.roomName.equalsIgnoreCase("Boss Map.Room"))
+      if (this.roomName.equalsIgnoreCase("Boss Room"))
       {
           return "{ B }";
       }
-      if (this.roomName.equalsIgnoreCase("Treasure Map.Room"))
+      if (this.roomName.equalsIgnoreCase("Treasure Room"))
           {
               return "{ T }";
           }
@@ -74,7 +74,7 @@ public class Room {
       {
           return "{ U }";
       }
-      if (this.roomName.equalsIgnoreCase("Empty Map.Room"))
+      if (this.roomName.equalsIgnoreCase("Empty Room"))
       {
           return "{   }";
       }
