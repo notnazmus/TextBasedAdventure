@@ -36,8 +36,7 @@ public class Board {
         }
     }
 
-
-
-
-
+    public Room[][] getGameBoard() {
+        return gameBoard;
+    }
 }

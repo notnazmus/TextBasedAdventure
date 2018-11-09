@@ -34,11 +34,25 @@ public class Room {
 
     }
 
-    public Room()
-    {
-
+    public Monster getM() {
+        return m;
     }
 
+    public Items getReward() {
+        return reward;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
 
     public String toString()
     {
