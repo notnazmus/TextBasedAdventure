@@ -57,9 +57,9 @@ public class Hero {
 
     public void forbiddenAtk(Monster m)
     {
-        m.setHP(m.getHP()-(int)(2.99*this.atk));
+        m.setHP(m.getHP()-(int)(2.25*this.atk));
         this.setHP(this.getHP()-50);
-        System.out.println(this.name+"'s Forbidden Attack dealt "+ String.valueOf((int)(2.99*this.atk))+ " damage to "+ m.getType()+"." );
+        System.out.println(this.name+"'s Forbidden Attack dealt "+ String.valueOf((int)(2.25*this.atk))+ " damage to "+ m.getType()+"." );
         System.out.println(this.name+"'s Forbidden Attack caused "+this.name+" to lose 50HP.");
     }
 
@@ -68,8 +68,8 @@ public class Hero {
         double rand = Math.random();
         if (rand >= 0.85)
         {
-            m.setHP(m.getHP()- (int)(3.25*this.atk));
-            System.out.println(this.name+"'s Impossible Attack dealt "+ String.valueOf((int)3.25*this.atk)+ " damage to "+ m.getType()+"." );
+            m.setHP(m.getHP()- (int)(2.25*this.atk));
+            System.out.println(this.name+"'s Impossible Attack dealt "+ String.valueOf((int)2.25*this.atk)+ " damage to "+ m.getType()+"." );
         } else {
             System.out.println(this.name+"'s Impossible Attack missed.");
         }

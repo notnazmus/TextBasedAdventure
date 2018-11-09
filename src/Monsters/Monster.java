@@ -2,7 +2,7 @@ package Monsters;
 
 import Characters.Hero;
 
-public class Monster {
+public class Monster implements Abilities{
 
     private String type;
     private int HP;

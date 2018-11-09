@@ -134,13 +134,13 @@ public class Runner {
                     }
                     if (roomList[var].equals("Cave Halls"))
                     {
-                        Goblin goblin = new Goblin(45,8);
+                        Goblin goblin = new Goblin(35,18);
                         Room caveHalls = new Room(roomList[2], goblin, randomItem(),false);
                         map.editBoard(i,n,caveHalls);
                     }
                     if (roomList[var].equals("Underground Lake"))
                     {
-                        Slime slime = new Slime(20,10);
+                        Slime slime = new Slime(50,10);
                         Room undergroundLake = new Room(roomList[3],slime,randomItem(),false);
                         map.editBoard(i,n,undergroundLake);
                     }
