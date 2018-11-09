@@ -18,13 +18,6 @@ public class Drumstick extends Food implements Effects {
     }
 
 
-    public void consume(Hero hero)
-    {
-        System.out.println();
-        System.out.println(outputStr);
-        hero.setHP(hero.getHP()+bonusHP);
-        hero.setAtk(hero.getAtk()+bonusAtk);
 
-    }
 
 }

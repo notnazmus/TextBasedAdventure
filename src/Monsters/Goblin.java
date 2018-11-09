@@ -13,5 +13,17 @@ public class Goblin extends Monster implements Abilities {
         this.HP = HP;
         this.attackDmg = attackDmg;
     }
+    public void attack(Hero h)
+    {
+        double rand = Math.random();
+        if (rand >= 0.2)
+        {
+            h.setHP(h.getHP() - attackDmg);
+            System.out.println(this.type+ " has dealt " + String.valueOf(attackDmg)+ " to " + h.getName() +".");
+        } else
+        {
+            System.out.println (this.type+"'s attack missed!");
+        }
+    }
 
 }

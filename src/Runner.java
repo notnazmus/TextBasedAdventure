@@ -19,8 +19,6 @@ public class Runner {
     public static Hero hero = new Hero(400,4,0,15);
     private static  String userName = "";
 
-    public static Drumstick drumstick = new Drumstick();
-
 
     static Scanner scan = new Scanner(System.in);
 
@@ -117,7 +115,7 @@ public class Runner {
                 if (i == 2 && n ==2)
                 {
                     Dragon dragon = new Dragon(100,20);
-                    Room bossRoom = new Room(roomList[0],dragon,drumstick,false);
+                    Room bossRoom = new Room(roomList[0],dragon,randomItem(),false);
                     map.editBoard(i,n,bossRoom);
                 } else if(i == 4 && n  ==0)
                 {
@@ -128,19 +126,19 @@ public class Runner {
                     // System.out.println(var);
                     if (roomList[var].equals("Treasure Map.Room"))
                     {
-                        Room treasureRoom = new Room(roomList[1],drumstick,false);
+                        Room treasureRoom = new Room(roomList[1],randomItem(),false);
                         map.editBoard(i,n,treasureRoom);
                     }
                     if (roomList[var].equals("Cave Halls"))
                     {
                         Goblin goblin = new Goblin(45,8);
-                        Room caveHalls = new Room(roomList[2], goblin, drumstick,false);
+                        Room caveHalls = new Room(roomList[2], goblin, randomItem(),false);
                         map.editBoard(i,n,caveHalls);
                     }
                     if (roomList[var].equals("Underground Lake"))
                     {
                         Slime slime = new Slime(20,10);
-                        Room undergroundLake = new Room(roomList[3],slime,drumstick,false);
+                        Room undergroundLake = new Room(roomList[3],slime,randomItem(),false);
                         map.editBoard(i,n,undergroundLake);
                     }
                 }
@@ -291,6 +289,9 @@ public class Runner {
             }
         }
         if (currentRoom.getM().getHP()<=0) {
+            System.out.println(userName + " has obtained "+ currentRoom.getReward());
+            currentRoom.getReward().consume(hero);
+            pause(350);
             System.out.println("King Mordo: Congratulations, hero. You have slain Aphophis and brought peace unto this land!");
             pause(750);
             System.out.println("King Mordo: As a gift I shall bestow upon you powers beyond your imagination.");
@@ -347,6 +348,8 @@ public class Runner {
         }
         if (currentRoom.getM().getHP()<=0) {
             System.out.println("The Goblin was defeated!");
+            System.out.println(userName + " has obtained "+ currentRoom.getReward());
+            currentRoom.getReward().consume(hero);
             currentRoom.setCompleted(true);
             printMap();
         }
@@ -381,6 +384,8 @@ public class Runner {
         }
         if (currentRoom.getM().getHP()<=0) {
             System.out.println("The Slime was defeated!");
+            System.out.println(userName + " has obtained "+ currentRoom.getReward());
+            currentRoom.getReward().consume(hero);
             currentRoom.setCompleted(true);
             printMap();
         }
@@ -408,6 +413,34 @@ public class Runner {
         } else
         {
             System.out.println("Invalid input! Please enter a valid attack.");
+        }
+    }
+
+    public static Items randomItem()
+    {
+        double rand = Math.random();
+        if (rand >= 0 && rand <= 0.49)
+        {
+            if (rand >= 0 && rand <= 0.49)
+            {
+                Drumstick drumstick = new Drumstick();
+                return drumstick;
+            } else
+            {
+                DragonFlesh dragonFlesh = new DragonFlesh();
+                return dragonFlesh;
+            }
+        } else
+        {
+            if (rand >= 0 && rand <= 0.49)
+            {
+                SwordOfAzzaroth swordOfAzzaroth = new SwordOfAzzaroth();
+                return swordOfAzzaroth;
+            } else
+            {
+                BladeOfTheUndying bladeOfTheUndying = new BladeOfTheUndying();
+                return bladeOfTheUndying;
+            }
         }
     }
 

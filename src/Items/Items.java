@@ -41,7 +41,6 @@ public class Items implements Effects {
 
     public void consume(Hero hero)
     {
-        System.out.println();
       System.out.println(getOutputStr());
       hero.setHP(hero.getHP()+getBonusHP());
       hero.setAtk(hero.getAtk()+getBonusAtk());
