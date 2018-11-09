@@ -56,21 +56,25 @@ public class Room {
 
     public String toString()
     {
-      if (this.roomName=="Boss Room")
+      if (this.roomName.equalsIgnoreCase("Boss Room"))
       {
           return "{ B }";
       }
-      if (this.roomName == "Treasure Room")
+      if (this.roomName.equalsIgnoreCase("Treasure Room"))
           {
               return "{ T }";
           }
-      if( this.roomName == "Cave Halls")
+      if( this.roomName.equalsIgnoreCase("Cave Halls"))
       {
           return "{ C }";
       }
-      if (this.roomName == "Underground Lake")
+      if (this.roomName.equalsIgnoreCase("Underground Lake"))
       {
           return "{ U }";
+      }
+      if (this.roomName.equalsIgnoreCase("Empty Room"))
+      {
+          return "{   }";
       }
         return "{ ? }" ;
     }

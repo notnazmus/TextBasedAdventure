@@ -20,11 +20,7 @@ public class Runner {
     public static Hero hero = new Hero(400,4,0);
 
     public static Drumstick drumstick = new Drumstick();
-    public static Room bossRoom = new Room(roomList[0],dragon,drumstick,false);
-    public static Room treasureRoom = new Room(roomList[1],drumstick,false);
-    public static Room caveHalls = new Room(roomList[2], goblin, drumstick,false);
-    public static Room undergroundLake = new Room(roomList[3],slime,drumstick,false);
-    public static Room emptyRoom = new Room(roomList[4],false);
+    
 
     static Scanner scan = new Scanner(System.in);
 
@@ -53,6 +49,17 @@ public class Runner {
         catch(InterruptedException ex)
         {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Function used to clear the terminal.
+     */
+    public static void clearScreen()
+    {
+        for (int i =0; i < 50; i++)
+        {
+            System.out.println(" ");
         }
     }
 
@@ -108,23 +115,28 @@ public class Runner {
             {
                 if (i == 2 && n ==2)
                 {
+                    Room bossRoom = new Room(roomList[0],dragon,drumstick,false);
                     map.editBoard(i,n,bossRoom);
                 } else if(i == 4 && n  ==0)
                 {
+                    Room emptyRoom = new Room(roomList[4],true);
                     map.editBoard(i,n,emptyRoom);
                 } else {
                     int var = (int)(Math.random()*3+1);
                     // System.out.println(var);
                     if (roomList[var].equals("Treasure Room"))
                     {
+                        Room treasureRoom = new Room(roomList[1],drumstick,false);
                         map.editBoard(i,n,treasureRoom);
                     }
                     if (roomList[var].equals("Cave Halls"))
                     {
+                        Room caveHalls = new Room(roomList[2], goblin, drumstick,false);
                         map.editBoard(i,n,caveHalls);
                     }
                     if (roomList[var].equals("Underground Lake"))
                     {
+                        Room undergroundLake = new Room(roomList[3],slime,drumstick,false);
                         map.editBoard(i,n,undergroundLake);
                     }
                 }
@@ -196,8 +208,8 @@ public class Runner {
             System.out.println("ERROR Type UP DOWN LEFT or RIGHT to move.");
             playerMovement();
         }
-        System.out.println(hero.getiCord());
-        System.out.println(hero.getnCord());
+        //System.out.println(hero.getiCord());
+        //System.out.println(hero.getnCord());
         updateMap();
     }
 
@@ -229,36 +241,56 @@ public class Runner {
 
     public static void enterRoom()
     {
-        int iCord = hero.getiCord();
-        int nCord = hero.getnCord();
         Room[][] gameBoard = map.getGameBoard();
-        Room currentRoom = gameBoard[iCord][nCord];
+        Room currentRoom = gameBoard[hero.getiCord()][hero.getnCord()];
         if (currentRoom.isCompleted() == false)
         {
             if (currentRoom.getRoomName().equalsIgnoreCase("Boss Room"))
             {
-
+                boosRoom(currentRoom);
+            } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Room"))
+            {
+                treasureRoom(currentRoom);
+            } else if(currentRoom.getRoomName().equalsIgnoreCase("Cave Halls"))
+            {
+                caveHalls(currentRoom);
+            } else if (currentRoom.getRoomName().equalsIgnoreCase("Underground Lake"))
+            {
+                undergroundLake(currentRoom);
             }
+        } else
+        {
+            System.out.println("Already Entered!");
         }
     }
 
-    public static void boosRoom()
-    {
 
+    public static void boosRoom(Room currentRoom)
+    {
+        clearScreen();
+        printMap();
+        currentRoom.setCompleted(true);
+        gameBeat = true;
     }
 
-    public static void treasureRoom()
+    public static void treasureRoom(Room currentRoom)
     {
-
+        clearScreen();
+        printMap();
+        currentRoom.setCompleted(true);
     }
 
-    public static void caveHalls()
+    public static void caveHalls(Room currentRoom)
     {
-
+        clearScreen();
+        printMap();
+        currentRoom.setCompleted(true);
     }
-    public static void undergroundLake()
+    public static void undergroundLake(Room currentRoom)
     {
-        
+        clearScreen();
+        printMap();
+        currentRoom.setCompleted(true);
     }
 
 
