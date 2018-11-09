@@ -1,14 +1,22 @@
+
+
 package Items;
 
 public class Items {
 
-    private int itemID;
     private  String name;
 
-    public Items(String name, int itemID)
+    public Items(String name)
     {
         this.name = name;
-        this.itemID = itemID;
     }
+
+@Override
+    public  String toString()
+    {
+        return this.name;
+    }
+
+
 
 }

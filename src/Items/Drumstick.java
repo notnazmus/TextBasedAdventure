@@ -7,7 +7,7 @@ public class Drumstick extends Food {
 
     public Drumstick()
     {
-        super("Drumstick",002);
+        super("Drumstick");
     }
 
 }

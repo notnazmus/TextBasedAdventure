@@ -13,14 +13,11 @@ public class Runner {
 
     public static String[] roomList = {"Boss Room","Treasure Room","Cave Halls","Underground Lake","Empty Room"};
 
-    public static Dragon dragon = new Dragon(100,100);
-    public static Slime slime = new Slime(100,100);
-    public static Goblin goblin = new Goblin(100,100);
-
-    public static Hero hero = new Hero(400,4,0);
+    public static Hero hero = new Hero(400,4,0,10);
+    private static  String userName = "";
 
     public static Drumstick drumstick = new Drumstick();
-    
+
 
     static Scanner scan = new Scanner(System.in);
 
@@ -91,12 +88,12 @@ public class Runner {
     public static void gameIntro()
     {
         System.out.println("What is your name adventurer?");
-        String userName = scan.nextLine();
-        pause(600);
+        userName = scan.nextLine();
+        pause(100);
         System.out.println("Welcome, "+ userName + ", to the Cave of Apophis");
         System.out.println("In order leave this cave you must slay the Dragon.");
         System.out.println("This is where your adventure begins, "+ userName+"!");
-        pause(3100);
+        pause(100);
         System.out.println("");
         System.out.println("Type UP DOWN LEFT or RIGHT to move.");
 
@@ -115,6 +112,7 @@ public class Runner {
             {
                 if (i == 2 && n ==2)
                 {
+                    Dragon dragon = new Dragon(100,100);
                     Room bossRoom = new Room(roomList[0],dragon,drumstick,false);
                     map.editBoard(i,n,bossRoom);
                 } else if(i == 4 && n  ==0)
@@ -131,11 +129,13 @@ public class Runner {
                     }
                     if (roomList[var].equals("Cave Halls"))
                     {
+                        Goblin goblin = new Goblin(100,100);
                         Room caveHalls = new Room(roomList[2], goblin, drumstick,false);
                         map.editBoard(i,n,caveHalls);
                     }
                     if (roomList[var].equals("Underground Lake"))
                     {
+                        Slime slime = new Slime(100,100);
                         Room undergroundLake = new Room(roomList[3],slime,drumstick,false);
                         map.editBoard(i,n,undergroundLake);
                     }
@@ -277,6 +277,8 @@ public class Runner {
     {
         clearScreen();
         printMap();
+        System.out.println(userName + "'s HP: " + hero.getHP());
+        System.out.println(userName + " has obtained "+ currentRoom.getReward());
         currentRoom.setCompleted(true);
     }
 

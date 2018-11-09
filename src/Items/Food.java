@@ -3,13 +3,16 @@ package Items;
 public class Food extends Items{
 
     private String name;
-    private int itemID;
 
 
-    public Food(String name, int itemID)
+    public Food(String name)
     {
-        super(name,itemID);
+        super(name);
         this.name = name;
-        this.itemID = itemID;
+    }
+
+    public String toString()
+    {
+        return this.name;
     }
 }
