@@ -1,3 +1,5 @@
+package Characters;
+
 import Items.Items;
 
 public class Hero {

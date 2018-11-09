@@ -1,3 +1,5 @@
+package Map;
+
 import Items.Items;
 import Monsters.Monster;
 
@@ -56,11 +58,11 @@ public class Room {
 
     public String toString()
     {
-      if (this.roomName.equalsIgnoreCase("Boss Room"))
+      if (this.roomName.equalsIgnoreCase("Boss Map.Room"))
       {
           return "{ B }";
       }
-      if (this.roomName.equalsIgnoreCase("Treasure Room"))
+      if (this.roomName.equalsIgnoreCase("Treasure Map.Room"))
           {
               return "{ T }";
           }
@@ -72,7 +74,7 @@ public class Room {
       {
           return "{ U }";
       }
-      if (this.roomName.equalsIgnoreCase("Empty Room"))
+      if (this.roomName.equalsIgnoreCase("Empty Map.Room"))
       {
           return "{   }";
       }

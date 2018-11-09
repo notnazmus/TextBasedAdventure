@@ -1,9 +1,11 @@
+import Characters.Hero;
 import Items.*;
+import Map.Board;
+import Map.Room;
 import Monsters.*;
 
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Runner {
 
@@ -11,7 +13,7 @@ public class Runner {
     public static String[][] displayedMap = new String[5][5];
     public static boolean gameBeat = false;
 
-    public static String[] roomList = {"Boss Room","Treasure Room","Cave Halls","Underground Lake","Empty Room"};
+    public static String[] roomList = {"Boss Map.Room","Treasure Map.Room","Cave Halls","Underground Lake","Empty Map.Room"};
 
     public static Hero hero = new Hero(400,4,0,10);
     private static  String userName = "";
@@ -122,7 +124,7 @@ public class Runner {
                 } else {
                     int var = (int)(Math.random()*3+1);
                     // System.out.println(var);
-                    if (roomList[var].equals("Treasure Room"))
+                    if (roomList[var].equals("Treasure Map.Room"))
                     {
                         Room treasureRoom = new Room(roomList[1],drumstick,false);
                         map.editBoard(i,n,treasureRoom);
@@ -245,10 +247,10 @@ public class Runner {
         Room currentRoom = gameBoard[hero.getiCord()][hero.getnCord()];
         if (currentRoom.isCompleted() == false)
         {
-            if (currentRoom.getRoomName().equalsIgnoreCase("Boss Room"))
+            if (currentRoom.getRoomName().equalsIgnoreCase("Boss Map.Room"))
             {
                 boosRoom(currentRoom);
-            } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Room"))
+            } else if (currentRoom.getRoomName().equalsIgnoreCase("Treasure Map.Room"))
             {
                 treasureRoom(currentRoom);
             } else if(currentRoom.getRoomName().equalsIgnoreCase("Cave Halls"))
