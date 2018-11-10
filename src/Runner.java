@@ -284,7 +284,7 @@ public class Runner {
         String input;
         while (hero.getHP() >0 && currentRoom.getM().getHP() >0)
         {
-            System.out.println("Goblin HP: "+currentRoom.getM().getHP());
+            System.out.println("Dragon HP: "+currentRoom.getM().getHP());
             System.out.println(userName + "'s HP: " + hero.getHP());
             System.out.println(userName+"'s ATK: "+hero.getAtk());
             System.out.println("");
