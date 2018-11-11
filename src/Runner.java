@@ -1,4 +1,6 @@
-//Nazmus Sakib Pd 2&3
+/**
+ * Nazmus Sakib Period 2&3
+ */
 
 import Characters.Hero;
 import Items.*;
